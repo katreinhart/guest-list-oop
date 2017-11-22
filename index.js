@@ -27,6 +27,10 @@ class GuestList {
   addGuests(...guests) {
     this.guests = this.guests.concat(guests)
   }
+
+  includes (guest) {
+    return this.guests.includes(guest)
+  }
 }
 
 class Party {
@@ -39,7 +43,9 @@ class Party {
   }
 
   enter (guest) {
-    this.currentGuests.push(guest)
+    if(this.population < this.venue.capacity && (this.guestList.includes(guest) && guest.isOver21)) {
+      this.currentGuests.push(guest)
+    }
   }
 
   leave (guest) {
